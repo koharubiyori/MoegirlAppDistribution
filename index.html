@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>H萌娘安卓APP</title>
+  <link rel="icon" href="./images/favicon.ico">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
   <style>
-    @media (min-width: 930px) {
+    @media (min-width: 650px) {
       body {
         margin: 0;
         color: white;
@@ -42,7 +44,7 @@
 
       .bodyContent {
         position: absolute;
-        width: 70%;
+        width: 80%;
         height: 100%;
         top: 0;
         left: 50%;
@@ -58,16 +60,41 @@
       }
 
       .leftContent .title {
-        font-size: 40px;
+        font-size: 44px;
       }
 
       .leftContent .subtitle {
-        font-size: 18px;
+        font-size: 20px;
         margin-top: 20px;
         margin-right: 20px;
       }
 
+      .leftContent .featureList {
+        list-style: none;
+        padding-inline-start: 0;
+        position: relative;
+      }
+
+      .leftContent .featureList > li {
+        line-height: 2em;
+        font-size: 18px;
+      }
+
+      .leftContent .featureList > li > .fa {
+        margin-right: 10px;
+        font-size: 14px;
+        color: white;
+      }
+
+      .qrcode {
+        position: absolute;
+        width: 200px;
+        left: 370px;
+        top: 20px;
+      }
+
       .rightContent {
+        display: none;
         position: relative;
         padding-right: 340px;
         transform: rotate(0deg);
@@ -77,28 +104,32 @@
         position: absolute;
         top: -20px;
         left: 20px;
-        width: 340px;
-        height: 755px;
+        width: 100%;
+        height: 100%;
         background-color: rgba(200, 200, 200, 0.5);
         border-radius: 20px;
         transform: perspective(700px) rotateY(-10deg);
       }
 
-      .appImageAppearAniContainer {
+      .appImageContainer {
         position: absolute;
         top: 0;
         left: 0;
-        width: 340px;
+        /* width: 340px; */
+      }
+
+      .appImageAppearAniContainer {
+        position: relative;
         z-index: 1;
       }
 
       .appImage {
-        width: 100%;
+        height: 80vh;
         transition: all 0.5s;
       }
 
       .appImage:hover {
-        animation: appImageHoverActive 0.5s forwards;
+        transform: perspective(700px) rotateY(10deg);
       }
 
       @keyframes appImageHoverActive {
@@ -151,6 +182,10 @@
         opacity: 0;
         animation: appear 0.5s 0.6s forwards;
       }
+      .text-appear-5 {
+        opacity: 0;
+        animation: appear 0.5s 0.8s forwards;
+      }
 
       @keyframes appear {
         0% {
@@ -188,16 +223,46 @@
         animation: appear 0.5s 1.8s forwards;
       }
     }
+
+    @media (min-width: 1160px) {
+      .rightContent {
+        display: block;
+      }
+    }
   </style>
 </head>
 <body>
   <div class="desktopFlavor" style="display: none;">
-    <div class="background"></div>
+    <div class="background"></div>background
     <div class="bodyContent">
       <div class="leftContent">
         <div class="title text-appear-1">HMoegirl - H萌娘官方应用</div>
         <div class="subtitle text-appear-2">H萌娘是以收录大量里番黄油本子条目和现实历史人物的娘化形象为特色，活泼而又开放的情色百科全书，每天都有新的内容和知识，在这里，我们会使你发现这个世界更多。</div>
-        <div class="subtitle text-appear-3">下载APP，和我们一起开启全新的百科冒险之旅吧！(๑>؂<๑）</div>
+        <ul class="featureList text-appear-3">
+          <img class="qrcode" src="./images/qrcode.png">
+          <li>
+            <i class="fa fa-anchor"></i>全新的首页，提供良好的阅读体验
+          </li>
+          <li>
+            <i class="fa fa-comment"></i>完整的评论及回复系统
+          </li>
+          <li>
+            <i class="fa fa-binoculars"></i>提供简便的编辑及预览功能
+          </li>
+          <li>
+            <i class="fa fa-archive"></i>最近更改，监视列表，页面历史及差异对比
+          </li>
+          <li>
+            <i class="fa fa-crosshairs"></i>独特的条目搜索，分类浏览
+          </li>
+          <li>
+            <i class="fa fa-coffee"></i>浏览历史
+          </li>
+          <li>
+            <i class="fa fa-subway"></i>夜间模式
+          </li>
+        </ul>
+        <div class="subtitle text-appear-4">下载APP，和我们一起开启全新的百科冒险之旅吧！(๑>؂<๑）</div>
         <div class="downloads">
           <div class="downloadButton downloadButton-appear">
             <span class="material-icons">get_app</span>
@@ -206,10 +271,12 @@
         </div>
       </div>
       <div class="rightContent">
-        <div class="appImageAppearAniContainer image-appear-2" style="transform:rotate(0deg);">
-          <img src="./images/app.png" class="appImage">
+        <div class="appImageContainer">
+          <div class="appImageAppearAniContainer image-appear-2">
+            <img src="./images/app.png" class="appImage">
+          </div>
+          <div class="appImageShadow image-appear-1"></div>
         </div>
-        <div class="appImageShadow image-appear-1"></div>
       </div>
     </div>
   </div>
