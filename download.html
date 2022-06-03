@@ -8,21 +8,29 @@
 </head>
 <body>
   <script>
-    const res = fetch('https://api.github.com/repos/koharubiyori/Moegirl-plus-native/releases/latest')
-    .then(res => res.json())
-    .then(res => {
-      const apkType = new URLSearchParams(location.search.slice(1)).get('type')
-      const apkName = apkType === 'moegirl' ? 'Moegirl+.apk' : 'HMoegirl.apk'
-      const apkDownloadUrl = res.assets.find(asset => asset.name === apkName).browser_download_url
+    const apkType = new URLSearchParams(location.search.slice(1)).get('type')
+    if (apkType === 'moegirl') {
+      execDownload('https://koharu-common-assets-worker.koharu.top/Moegirl+.apk', 'Moegirl+.apk')
+    } else {
+      const res = fetch('https://api.github.com/repos/koharubiyori/Moegirl-plus-native/releases/latest')
+        .then(res => res.json())
+        .then(res => {
+          const apkDownloadUrl = res.assets.find(asset => asset.name === 'HMoegirl.apk').browser_download_url
+          execDownload(apkDownloadUrl, 'HMoegirl.apk')
+        })
+        .catch(e => {
+          console.log(e)
+          alert('网络错误，请刷新重试！')
+        })
+    }
+
+
+    function execDownload(url, filename) {
       const link = document.createElement('a')
-      link.href = apkDownloadUrl
-      link.download = apkName
+      link.href = url
+      link.download = filename
       link.click()
-    })
-    .catch(e => {
-      console.log(e)
-      alert('网络错误，请刷新重试！')
-    })
+    }
   </script>
 </body>
 </html>

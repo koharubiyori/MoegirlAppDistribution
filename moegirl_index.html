@@ -91,10 +91,11 @@
       }
   
       .qrcode {
-        position: absolute;
-        width: 200px;
+        /* position: absolute;
         left: 400px;
-        top: 25px;
+        top: 25px; */
+        width: 220px;
+        border-radius: 10px;
       }
   
       .rightContent {
@@ -164,7 +165,7 @@
       .downloads {
         margin-top: 30px;
         display: flex;
-        align-items: center;
+        align-items: flex-start;
       }
   
       .downloadButton {
@@ -258,7 +259,6 @@
         <div class="title text-appear-1">Moegirl+</div>
         <div class="subtitle text-appear-2">Moegirl+是萌娘百科第三方安卓APP，与官方官方客户端相比，有更好的使用体验。</div>
         <ul class="featureList text-appear-3">
-          <img class="qrcode" src="./images/qrcode.png">
           <li>
             <i class="fa fa-anchor"></i>全新的首页，提供更好的阅读体验
           </li>
@@ -285,7 +285,10 @@
               <span class="material-icons">get_app</span>
               <span class="text">立即下载</span>
             </div>
-            <div style="margin-left:40px;">手机请扫描上方二维码下载</div>
+            <div style="margin-left:40px;">
+              <div style="text-align:center; margin-bottom:10px;">手机请扫描下方二维码下载</div>
+              <img class="qrcode" src="https://s2.loli.net/2022/06/03/bEh6OSjYga2HCXq.jpg" style="display:block;">
+            </div>
           </div>
         </div>
       </div>
@@ -349,15 +352,14 @@
   const swiper = new Swiper('.swiper', {
     loop: true,
     autoplay: {
-      delay: 3000,
+      delay: 5000,
     },
   })
   
   const downloadButtonEl = document.querySelector('.downloadButton')
   downloadButtonEl.addEventListener('click', async () => {
     try {
-      const res = await fetch('https://api.github.com/repos/koharubiyori/Moegirl-plus-native/releases/latest').then(res => res.json())
-      const downloadUrl = res.assets.find(asset => asset.name === 'Moegirl+.apk').browser_download_url
+      const downloadUrl = 'https://koharu-common-assets-worker.koharu.top/Moegirl+.apk'
       const link = document.createElement('a')
       link.href = downloadUrl
       link.download = 'Moegirl+.apk'
