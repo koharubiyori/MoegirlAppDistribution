@@ -11,7 +11,6 @@
   <link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/swiper@8.1.6/swiper-bundle.min.css">
   <style>
     @media (min-width: 650px) {
-
       body {
         margin: 0;
         color: white;
@@ -24,8 +23,8 @@
       }
       
       .background {
-        background-color: blue;
-        background: url('https://s2.loli.net/2022/06/03/18FqVNtK3UM4vPy.png');
+        background-color: #C9FDB6;
+        background-image: url('https://s2.loli.net/2022/06/03/18FqVNtK3UM4vPy.png');
         background-size: cover;
         background-position: center;
         margin: 0;
@@ -249,6 +248,87 @@
         display: block;
       }
     }
+
+    @media (max-width: 650px) {
+      body {
+        margin: 0;
+      }
+      
+      .mobileFlavor {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .mainContent {
+        width: 100%;
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .banner {
+        width: 95%;
+        margin-top: 30px;
+      }
+
+      .slogan {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .appIcon {
+        width: 70px;
+        height: 70px;
+        margin-top: 10px;
+        align-self: center;
+      }
+
+      .title {
+        font-size: 40px;
+        color: #09D860;
+        letter-spacing: 1px;
+        margin-top: 20px;
+        /* text-shadow:
+          3px 0 #09D860, 
+          0 3px #09D860, 
+          -3px 0 #09D860, 
+          0 -3px #09D860,
+          1.5px 1.5px #09D860, 
+          1.5px -1.5px #09D860, 
+          -1.5px 1.5px #09D860, 
+          -1.5px -1.5px #09D860 */
+        ;
+      }
+
+      .subtitle {
+        font-size: 26px;
+        color: #09D860;
+        margin-top: 5px;
+      }
+
+      .secondaryTitle {
+        font-size: 18px;
+        color: #09D860;
+        margin-top: 5px;
+      }
+
+      .downloadButton {
+        width: 80%;
+        height: 50px;
+        display: flex;
+        border-radius: 25px;
+        justify-content: center;
+        align-items: center;
+        background-color: #09D860;
+        color: white;
+        font-size: 17px;
+        margin-bottom: 50px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -296,14 +376,25 @@
         <div class="appImageContainer">
           <div class="appImageAppearAniContainer image-appear-2">
             <div class="swiper">
-              <div class="swiper-wrapper">
-                <!-- <div class="swiper-slide">Slide 1</div> -->
-              </div>
+              <div class="swiper-wrapper"></div>
             </div>
           </div>
           <div class="appImageShadow image-appear-1"></div>
         </div>
       </div>
+    </div>
+  </div>
+
+  <div class="mobileFlavor">
+    <img src="https://s2.loli.net/2022/06/04/zckSEZav2D97VoI.png" class="banner">
+    <div class="mainContent">
+      <div class="slogan">
+        <img src="https://s2.loli.net/2022/06/04/NWcR4zSEb3TyHQ7.png" class="appIcon">
+        <div class="title">Moegirl+</div>
+        <div class="subtitle">萌娘百科第三方安卓APP</div>
+        <div class="secondaryTitle">不止好用一点点</div>
+      </div>
+      <div class="downloadButton">立即下载</div>
     </div>
   </div>
 </body>
@@ -356,18 +447,20 @@
     },
   })
   
-  const downloadButtonEl = document.querySelector('.downloadButton')
-  downloadButtonEl.addEventListener('click', async () => {
-    try {
-      const downloadUrl = 'https://koharu-common-assets-worker.koharu.top/Moegirl+.apk'
-      const link = document.createElement('a')
-      link.href = downloadUrl
-      link.download = 'Moegirl+.apk'
-      link.click()
-    } catch (e) {
-      console.log(e)
-      alert('网络错误，请重试')
-    }
-  })
+  const downloadButtonElList = document.querySelectorAll('.downloadButton')
+  for (const downloadButtonEl of downloadButtonElList) {
+    downloadButtonEl.addEventListener('click', async () => {
+      try {
+        const downloadUrl = 'https://koharu-common-assets-worker.koharu.top/Moegirl+.apk'
+        const link = document.createElement('a')
+        link.href = downloadUrl
+        link.download = 'Moegirl+.apk'
+        link.click()
+      } catch (e) {
+        console.log(e)
+        alert('网络错误，请重试')
+      }
+    })
+  }
 </script>
 </html>
