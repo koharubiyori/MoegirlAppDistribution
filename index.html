@@ -4,32 +4,34 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>H萌娘官方安卓APP</title>
-  <link rel="icon" href="./images/favicon.ico">
+  <title>Moegirl+ 萌娘百科第三方安卓APP</title>
+  <link rel="icon" href="https://koharu-common-assets-worker.koharu.top/moegirl-plus-icon.ico">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/swiper@8.1.6/swiper-bundle.min.css">
   <style>
+    @media (min-width: 650px) {
       body {
         margin: 0;
         color: white;
         height: 100vh;
         overflow: hidden;
       }
-
+  
       .desktopFlavor {
         display: block !important;
       }
       
       .background {
-        background-color: blue;
-        background: url(./images/bg.jpg);
+        background-color: #C9FDB6;
+        background-image: url('./images/bg.png');
         background-size: cover;
         background-position: center;
         margin: 0;
         height: 100vh;
         position: relative;
       }
-
+  
       .background::before {
         content: '';
         position: absolute;
@@ -40,7 +42,7 @@
         background: black;
         opacity: 0.5;
       }
-
+  
       .bodyContent {
         position: absolute;
         width: 80%;
@@ -53,21 +55,21 @@
         display: flex;
         justify-content: space-between;
       }
-
+  
       .leftContent {
         width: 600px;
       }
-
+  
       .leftContent .title {
-        font-size: 44px;
+        font-size: 42px;
       }
-
+  
       .leftContent .subtitle {
         font-size: 20px;
         margin-top: 25px;
         margin-right: -10px;
       }
-
+  
       .leftContent .featureList {
         padding-top: 15px;
         padding-bottom: 10px;
@@ -75,32 +77,33 @@
         padding-inline-start: 0;
         position: relative;
       }
-
+  
       .leftContent .featureList > li {
         line-height: 2em;
         font-size: 18px;
       }
-
+  
       .leftContent .featureList > li > .fa {
         margin-right: 10px;
         font-size: 14px;
         color: white;
       }
-
+  
       .qrcode {
-        position: absolute;
-        width: 200px;
+        /* position: absolute;
         left: 400px;
-        top: 25px;
+        top: 25px; */
+        width: 220px;
+        border-radius: 10px;
       }
-
+  
       .rightContent {
         display: none;
         position: relative;
         padding-right: 340px;
         transform: rotate(0deg);
       }
-
+  
       .appImageShadow {
         position: absolute;
         top: -25px;
@@ -111,28 +114,41 @@
         border-radius: 20px;
         transform: perspective(700px) rotateY(-10deg);
       }
-
+  
       .appImageContainer {
         position: absolute;
         top: 0;
         left: 0;
         /* width: 340px; */
       }
-
+  
       .appImageAppearAniContainer {
         position: relative;
         z-index: 1;
       }
-
-      .appImage {
+  
+      .swiper {
+        width: 350px;
         height: 82vh;
+        border-radius: 20px;
+        overflow: hidden;
         transition: all 0.5s;
+        isolation: isolate;
       }
-
-      .appImage:hover {
+  
+      .swiper:hover {
         transform: perspective(700px) rotateY(10deg);
       }
-
+  
+      /* .swiper-slide {
+        border-radius: 20px;
+        overflow: hidden;
+      } */
+  
+      .appImage {
+        height: 82vh;
+      }
+  
       @keyframes appImageHoverActive {
         0% {
           transform: perspective(700px) rotateY(-10deg);
@@ -144,11 +160,13 @@
           transform: perspective(700px) rotateY(10deg);
         }
       }
-
+  
       .downloads {
         margin-top: 30px;
+        display: flex;
+        align-items: flex-start;
       }
-
+  
       .downloadButton {
         display: inline-flex;
         align-items: center;
@@ -157,16 +175,16 @@
         padding: 10px 20px;
         cursor: pointer;
       }
-
+  
       .downloadButton:hover {
         opacity: 0.8 !important;
       }
-
+  
       .downloadButton .text {
         margin-left: 5px;
         font-weight: bold;
       }
-
+  
       .text-appear-1 {
         opacity: 0;
         animation: appear 0.5s forwards;
@@ -187,7 +205,7 @@
         opacity: 0;
         animation: appear 0.5s 0.8s forwards;
       }
-
+  
       @keyframes appear {
         0% {
           opacity: 0;
@@ -198,7 +216,7 @@
           transform: translateY(0);
         }
       }
-
+  
       .image-appear-1 {
         opacity: 0;
         animation: appImage-appear 0.5s 1.1s forwards;
@@ -207,7 +225,7 @@
         opacity: 0;
         animation: appImage-appear 0.5s 1.6s forwards;
       }
-
+  
       @keyframes appImage-appear {
         0% {
           opacity: 0;
@@ -218,28 +236,109 @@
           transform: perspective(700px) rotateY(-10deg);
         }
       }
-
+  
       .downloadButton-appear {
         opacity: 0;
         animation: appear 0.5s 1.8s forwards;
       }
+    }
 
     @media (min-width: 1160px) {
       .rightContent {
         display: block;
       }
     }
+
+    @media (max-width: 650px) {
+      body {
+        margin: 0;
+      }
+      
+      .mobileFlavor {
+        height: 100vh;
+        display: flex !important;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .mainContent {
+        width: 100%;
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .banner {
+        width: 95%;
+        margin-top: 30px;
+      }
+
+      .slogan {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .appIcon {
+        width: 70px;
+        height: 70px;
+        margin-top: 10px;
+        align-self: center;
+      }
+
+      .title {
+        font-size: 38px;
+        color: #09D860;
+        margin-top: 10px;
+        /* text-shadow:
+          3px 0 #09D860, 
+          0 3px #09D860, 
+          -3px 0 #09D860, 
+          0 -3px #09D860,
+          1.5px 1.5px #09D860, 
+          1.5px -1.5px #09D860, 
+          -1.5px 1.5px #09D860, 
+          -1.5px -1.5px #09D860 */
+        ;
+      }
+
+      .subtitle {
+        font-size: 26px;
+        color: #09D860;
+        margin-top: 10px;
+      }
+
+      .secondaryTitle {
+        font-size: 17px;
+        color: #09D860;
+        margin-top: 5px;
+      }
+
+      .downloadButton {
+        width: 80%;
+        height: 50px;
+        display: flex;
+        border-radius: 25px;
+        justify-content: center;
+        align-items: center;
+        background-color: #09D860;
+        color: white;
+        font-size: 17px;
+        margin-bottom: 50px;
+      }
+    }
   </style>
 </head>
 <body>
   <div class="desktopFlavor" style="display: none;">
-    <div class="background"></div>background
+    <div class="background"></div>
     <div class="bodyContent">
       <div class="leftContent">
-        <div class="title text-appear-1">HMoegirl - Android APP</div>
-        <div class="subtitle text-appear-2">H萌娘安卓客户端是网站计划中的一部分，旨在为用户提供更好的使用体验。每天都会有新的内容和知识，在这里，我们会使你发现这个世界更多。</div>
+        <div class="title text-appear-1">Moegirl+</div>
+        <div class="subtitle text-appear-2">Moegirl+是萌娘百科第三方安卓APP，与官方客户端相比，拥有更好的使用体验。</div>
         <ul class="featureList text-appear-3">
-          <img class="qrcode" src="./images/qrcode.png">
           <li>
             <i class="fa fa-anchor"></i>全新的首页，提供更好的阅读体验
           </li>
@@ -260,39 +359,108 @@
           </li>
         </ul>
         <div class="subtitle text-appear-4">下载APP，和我们一起开启全新的百科冒险之旅吧！(๑>؂<๑）</div>
-        <div class="downloads">
-           <div class="downloadButton-appear">
-          <div class="downloadButton">
-            <span class="material-icons">get_app</span>
-            <span class="text">立即下载</span>
-          </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;手机请扫描上方二维码下载</div>
+        <div class="downloadButton-appear">
+          <div class="downloads">
+            <div class="downloadButton">
+              <span class="material-icons">get_app</span>
+              <span class="text">立即下载</span>
+            </div>
+            <div style="margin-left:40px;">
+              <div style="text-align:center; margin-bottom:10px;">手机请扫描下方二维码下载</div>
+              <img class="qrcode" src="https://s2.loli.net/2022/06/03/FWJRxTlo8XL1GUK.jpg" style="display:block;">
+            </div>
+          </div>
         </div>
       </div>
       <div class="rightContent">
         <div class="appImageContainer">
           <div class="appImageAppearAniContainer image-appear-2">
-            <img src="./images/app.png" class="appImage">
+            <div class="swiper">
+              <div class="swiper-wrapper"></div>
+            </div>
           </div>
           <div class="appImageShadow image-appear-1"></div>
         </div>
       </div>
     </div>
   </div>
+
+  <div class="mobileFlavor" style="display: none;">
+    <img src="https://s2.loli.net/2022/06/04/zckSEZav2D97VoI.png" class="banner">
+    <div class="mainContent">
+      <div class="slogan">
+        <img src="https://s2.loli.net/2022/06/04/NWcR4zSEb3TyHQ7.png" class="appIcon">
+        <div class="title">Moegirl+</div>
+        <div class="subtitle">萌娘百科第三方安卓APP</div>
+        <div class="secondaryTitle">不止好用一点点</div>
+      </div>
+      <div class="downloadButton">立即下载</div>
+    </div>
+  </div>
 </body>
+<script src="https://fastly.jsdelivr.net/npm/swiper@8.1.6/swiper-bundle.min.js"></script>
 <script>
-  const downloadButtonEl = document.querySelector('.downloadButton')
-  downloadButtonEl.addEventListener('click', async () => {
-    try {
-      const res = await fetch('https://api.github.com/repos/koharubiyori/Moegirl-plus-native/releases/latest').then(res => res.json())
-      const hmoeDownloadUrl = res.assets.find(asset => asset.name === 'HMoegirl.apk').browser_download_url
-      const link = document.createElement('a')
-      link.href = hmoeDownloadUrl
-      link.download = 'HMoegirl.apk'
-      link.click()
-    } catch (e) {
-      console.log(e)
-      alert('网络错误，请重试')
-    }
+  function resizeSwiper() {
+    const appImageRate = window.innerHeight * 0.82 / 2400
+    document.querySelector('.swiper').style.width = 1080 * appImageRate + 'px'
+  }
+  
+  resizeSwiper()
+  window.onresize = resizeSwiper
+  
+  const swiperImageList = [
+    'https://s2.loli.net/2022/06/03/E2wYsVAS3pzegvl.png',
+    'https://s2.loli.net/2022/06/03/r5Gmno4gQHcDjPY.png',
+    'https://s2.loli.net/2022/06/03/AJxjuEXU3lBk5Zf.png',
+    'https://s2.loli.net/2022/06/03/BSgIErOfRcYNQ4e.png',
+    'https://s2.loli.net/2022/06/03/FRIkzoJf4PU5Wlg.png',
+    'https://s2.loli.net/2022/06/03/ZBcVFphlAXEdImw.png',
+    'https://s2.loli.net/2022/06/03/boPWL2T8zYD76yZ.png',
+    'https://s2.loli.net/2022/06/03/sD18m5obLTWQvrY.png',
+    'https://s2.loli.net/2022/06/03/NOhsfXaYtm1WzQI.png',
+    'https://s2.loli.net/2022/06/03/K4epDcjax279nE5.png',
+    'https://s2.loli.net/2022/06/03/ejYifXuTzC7gAow.png',
+    'https://s2.loli.net/2022/06/03/8MkagutRrYxZlWf.png',
+    'https://s2.loli.net/2022/06/03/1YyWT56khqFUw2g.png',
+    'https://s2.loli.net/2022/06/03/KMXAiNTtjOnwe7S.png',
+    'https://s2.loli.net/2022/06/03/9Hw2uFgaT5bB4Qd.png',
+    'https://s2.loli.net/2022/06/03/MITJefCqbjiGEF7.png',
+    'https://s2.loli.net/2022/06/03/RHifNk6g4ochLyB.png',
+  ]
+
+  document.querySelector('.swiper-wrapper').append(
+    ...swiperImageList.map(url => {
+      const swiperSlideEl = document.createElement('div')
+      swiperSlideEl.classList.add('swiper-slide')
+      const imgEl = document.createElement('img')
+      imgEl.src = url
+      imgEl.classList.add('appImage')
+      swiperSlideEl.append(imgEl)
+      return swiperSlideEl
+    })
+  )
+
+  const swiper = new Swiper('.swiper', {
+    loop: true,
+    autoplay: {
+      delay: 5000,
+    },
   })
+  
+  const downloadButtonElList = document.querySelectorAll('.downloadButton')
+  for (const downloadButtonEl of downloadButtonElList) {
+    downloadButtonEl.addEventListener('click', async () => {
+      try {
+        const downloadUrl = 'https://koharu-common-assets-worker.koharu.top/Moegirl+.apk'
+        const link = document.createElement('a')
+        link.href = downloadUrl
+        link.download = 'Moegirl+.apk'
+        link.click()
+      } catch (e) {
+        console.log(e)
+        alert('网络错误，请重试')
+      }
+    })
+  }
 </script>
 </html>
