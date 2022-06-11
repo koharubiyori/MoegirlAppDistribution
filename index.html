@@ -90,7 +90,7 @@
         left: 400px;
         top: 25px; */
         width: 220px;
-        border-radius: 10px;
+        border-radius: 15px;
       }
   
       .rightContent {
@@ -363,7 +363,7 @@
             </div>
             <div style="margin-left:40px;">
               <div style="text-align:center; margin-bottom:10px;">手机请扫描下方二维码下载</div>
-              <img class="qrcode" src="https://s2.loli.net/2022/06/03/FWJRxTlo8XL1GUK.jpg" style="display:block;">
+              <img class="qrcode" src="./images/qrcode.png" style="display:block;">
             </div>
           </div>
         </div>
@@ -447,7 +447,7 @@
   for (const downloadButtonEl of downloadButtonElList) {
     downloadButtonEl.addEventListener('click', async () => {
       try {
-        const downloadUrl = 'https://koharu-common-assets-worker.koharu.top/Moegirl+.apk'
+        const downloadUrl = 'https://moegirl-plus-download.koharu.top'
         const link = document.createElement('a')
         link.href = downloadUrl
         link.download = 'Moegirl+.apk'
